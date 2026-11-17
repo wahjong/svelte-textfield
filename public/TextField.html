@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Svelte TextField</title>
+    <link rel="shortcut icon" href="#">
+    <script type="module" src="../src/TextField.ts"></script>
+</head>
+
+<body>
+    <form>
+        <p>
+            <label for="id_text01" id="aaa">This is label one</label><br/>
+            line
+            <textfield
+                data-id="id_text01"
+                data-type="line"
+                data-cssclass="line"
+                data-max-length="100"
+                data-labelledby="aaaaa"
+                data-describedby="bbbbb"
+                data-placeholder=""
+                data-width="fit-content"
+            >
+                <input type="hidden" value="AAA%20BBB%20CCC">
+            </textfield>
+            <span id="bbbbb">Please input label one</span>
+        </p>
+
+        <p>
+            <label for="id_text02" id="ccccc">This is label two</label><br/>
+            &lt;input type=&quot;text&quot; maxlength=&quot;100&quot; class=&quot;textfield&quot;&gt;
+            <input id="id_text02" type="text" aria-labelledby="ccccc" aria-describedby="ddddd" class="textfield" value="Faithful to GOD">
+            <span id="ddddd">Please input label two</span>
+        </p>
+
+        <p>
+            <label for="id_text03" id="eeeee">This is label three</label><br/>
+            <input type="hidden" id="b" value="AAA%0ABBB%0ACCC">
+            lines
+            <textfield
+                data-id="id_text03"
+                data-field="b"
+                data-type="lines"
+                data-cssclass="area"
+                data-max-length="100"
+                data-labelledby="eeeee"
+                data-describedby="fffff"
+                data-placeholder="input here"
+                data-width="200"
+            >
+            </textfield>
+            <span id="fffff">Please input label three</span>
+        </p>
+
+    </form>
+</body>
+
+</html>

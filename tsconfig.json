@@ -1,0 +1,23 @@
+{
+    "compilerOptions":
+    {
+        "allowJs": true,
+        "checkJs": false,
+        "rootDir": "../../",
+        "baseUrl": ".",
+        "target": "ESNEXT",
+        "moduleResolution": "bundler",
+        "types": ["svelte"],
+        "paths": {},
+        "strict": true,
+        "noImplicitAny": false,
+        "noImplicitThis": false,
+        "strictNullChecks": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "isolatedModules": false
+    },
+    "include": [
+        "src"
+    ]
+}
