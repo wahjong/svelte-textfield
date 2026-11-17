@@ -67,22 +67,18 @@ let label = $state<HTMLLabelElement | null>(null);
 let isempty = $state<boolean>();
 
 export function focus() {
-    //console.log('%cContentEdit.focus -> editor.focus()', 'background-color:green');
     if (editor)
         editor.focus();
 }
 
 onMount(async () => {
-    // console.log('%cContentEdit3.onMount', 'background-color:green', title);
     label = document.querySelector(`label[for="${id}"]`);
-    // console.log(`%clabel[for=${id}]`, 'background-color:brown', label);
     if (label) {
         label.addEventListener('click', clickLabel);
     }
 });
 
 $effect(() => {
-    // console.log('%cContentEdit.$effect', 'background-color:brown', content);
     if (!editor) return;
 
     if (html_entity_encode(editor.innerText) != content) {
@@ -91,30 +87,16 @@ $effect(() => {
 });
 
 function selectAll(element: HTMLElement) {
-    //console.log('%cselectAll', 'background-color:green', element);
     element.focus();
 }
 
 function clickLabel(event: MouseEvent) {
-    //console.log('%cclickLabel', 'background-color:green', event, id);
     if (!editor) return;
 
     selectAll(editor);
 }
 
 </script>
-
-<!-- ContentEdit.svelte -->
-<!-- content: {content}, -->
-<!-- editor: {editor}, -->
-<!-- focused: {focused}, -->
-<!-- id: {id}, -->
-<!-- isempty: {isempty} -->
-<!-- describedby: {describedby}, -->
-<!-- labelledby: {labelledby}, -->
-<!-- placeholder: {placeholder}, -->
-<!-- role: {role}, -->
-<!-- type: {type}, -->
 
 <span
     {id}
@@ -142,7 +124,6 @@ function clickLabel(event: MouseEvent) {
     use:contenteditable={type}
 
     onblur={(event) => {
-        //console.log('%cContentEdit.onblur', 'background-color:green', event);
 
         focused = document.activeElement === editor;
 
@@ -157,12 +138,10 @@ function clickLabel(event: MouseEvent) {
     }}
 
     onclick={(event) => {
-        //console.log('%cContentEdit.onclick', 'background-color:green', event);
         if (!propagate) event.stopPropagation();
     }}
 
     onedit={(event) => {
-        //console.log('%cContentEdit.onedit', 'background-color:green', event);
 
         isempty = event.detail.html === '\n';
 
@@ -170,13 +149,11 @@ function clickLabel(event: MouseEvent) {
     }}
 
     onenter={(event) => {
-        //console.log('%cContentEdit.onenter', 'background-color:green', event);
 
         onEnter(event.detail.html, event.detail.origin);
     }}
 
     onfocus={(event) => {
-        //console.log('%cContentEdit.onfocus', 'background-color:green', event);
 
         const target = event.target as Element;
         const html = target.innerHTML;
@@ -194,15 +171,12 @@ function clickLabel(event: MouseEvent) {
     }}
 
     onfocusin={(event) => {
-        //console.log('%cContentEdit.onfocusin', 'background-color:green', event);
     }}
 
     onfocusout={(event) => {
-        //console.log('%cContentEdit.onfocusout', 'background-color:green', event);
     }}
 
     onkeydown2={(event) => {
-        //console.log('%cContentEdit.keydown2', 'background-color:green', event);
     }}
 ></span>
 

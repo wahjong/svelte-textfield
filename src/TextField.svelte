@@ -60,16 +60,13 @@ if (target) {
 }
 
 function lineReplacer(text: string) {
-    // console.log('%clineReplacer', 'background-color:green', text, text === '\n');
     return text === '\n' ? '' : text.replace(/\r\n/g, '\n');
 }
 
 function blurHandler(content: string, event: FocusEvent) {
-    // console.log('%cTextField.blurHandler', 'background-color:green', content, event);
 }
 
 function editHandler(content: string, event: KeyboardEvent) {
-    // console.log('%cTextField.editHandler', 'background-color:green', content, event);
 
     textContent = content;
 
@@ -79,53 +76,24 @@ function editHandler(content: string, event: KeyboardEvent) {
 }
 
 function enterHandler(content: string, event: KeyboardEvent) {
-    // console.log('%cTextField.enterHandler', 'background-color:green', content, event);
 }
 
 function focusHandler(content: string, event: FocusEvent) {
-    // console.log('%cTextField.focusHandler', 'background-color:green', content, event);
 }
 
 export function getText() {
-    // console.log('%cTextField.getText', 'background-color:green');
     return textContent;
 }
 
 export function setText(content: string) {
-    // console.log('%cTextField.setText', 'background-color:green', content);
     textContent = content;
 }
 export function focus() {
-    // console.log('%cTextField.focus', 'background-color:green');
     if (cedit)
         cedit.focus();
 }
 
 </script>
-
-<!-- TextField.svelte -->
-
-<!-- ariaActivedescendant: {ariaActivedescendant}, -->
-<!-- ariaAutocomplete: {ariaAutocomplete}, -->
-<!-- ariaControls: {ariaControls}, -->
-<!-- ariaExpanded: {ariaExpanded}, -->
-<!-- ariaLabel: {ariaLabel}, -->
-
-<!-- cedit: {cedit}, -->
-<!-- cssclass: {cssclass}, -->
-<!-- dataset: {JSON.stringify(dataset)}, -->
-<!-- describedby: {describedby}, -->
-<!-- focused: {focused}, -->
-<!-- id: {id}, -->
-<!-- labelledby: {labelledby}, -->
-<!-- length: {length}, -->
-<!-- onChange: {onChange}, -->
-<!-- placeholder: {placeholder}, -->
-<!-- root: {root}, -->
-<!-- target: {target}, -->
-<!-- textContent: {textContent}, -->
-<!-- type: {type}, -->
-<!-- width: {width}, -->
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <span
@@ -138,38 +106,30 @@ export function focus() {
     class:focus={focused}
 
     onblurcontent={(event: CustomEvent) => {
-        // console.log('>>> onblurcontent', event);
     }}
 
     onedit={(event: CustomEvent) => {
-        // console.log('>>> onedit', event);
     }}
 
     onenter={(event: CustomEvent) => {
-        // console.log('>>> onenter', event);
     }}
 
     onkeydown={(event: KeyboardEvent) => {
-        // console.log('>>> onkeydown', event);
 
         if (cedit)
             cedit.focus();
     }}
 
     onkeydown2={(event: CustomEvent) => {
-        // console.log('>>> onkeydown2', event);
     }}
 
     onfocuscontent={(event: CustomEvent) => {
-        // console.log('>>> onfocuscontent', event);
     }}
 
     onfocusin={(event: FocusEvent) => {
-        // console.log('>>> onfocusin', event);
     }}
 
     onfocusout={(event: FocusEvent) => {
-        // console.log('>>> onfocusout', event);
     }}
 >
     <ContentEdit

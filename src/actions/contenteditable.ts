@@ -19,15 +19,12 @@ export function contenteditable(node: HTMLElement, type: string) {
     if (node.dataset.length) {
         maxLength = parseInt(node.dataset.length, 10);
     }
-    // console.log('%cmaxLength', 'background-color:purple', maxLength);
 
     function checkLength(element: HTMLElement) {
-        // console.log('%ccontenteditable.checkLength', 'background-color:green', element);
 
         if (!maxLength) return;
 
         if ( element.innerText.length > maxLength ) {
-            // console.log('%celement.innerText.length:%s > maxLength:%s', 'background-color:blue', element.innerText.length, maxLength);
 
             const caretPos = getCaretOffset(element);
 
@@ -41,7 +38,6 @@ export function contenteditable(node: HTMLElement, type: string) {
     }
 
     function handleMousedown(event: MouseEvent) {
-        // console.log('%ccontenteditable.handleMousedown', 'background-color:green', event);
 
         const { clientX: x, clientY: y } = event;
         const rect = node.getBoundingClientRect();
@@ -53,8 +49,6 @@ export function contenteditable(node: HTMLElement, type: string) {
             y <= rect.bottom;
 
         if (isInside) return;
-
-        // console.log('%cnode.dispatchEvent blurcontent', 'background-color:brown');
         node.dispatchEvent(
             new CustomEvent('blurcontent', {
                 detail: { srcElement: node},
@@ -72,12 +66,8 @@ export function contenteditable(node: HTMLElement, type: string) {
         this: HTMLElement,
         event: FocusEvent
     ) {
-        // console.log('%ccontenteditable.handleFocus', 'background-color:green', event);
-        // console.log('%ctype:%s, notKeepReturn:%s', 'background-color:purple', type, notKeepReturn);
 
         html = this.innerHTML;
-
-        // console.log('%cnode.dispatchEvent focuscontent', 'background-color:brown');
         node.dispatchEvent(
             new CustomEvent('focuscontent', {
                 detail: {
@@ -98,8 +88,6 @@ export function contenteditable(node: HTMLElement, type: string) {
         this: HTMLElement,
         event: KeyboardEvent
     ) {
-        // console.log('%ccontenteditable.handleKey', 'background-color:green', event);
-        // console.log('%cevent.key:%s, event.shiftKey:%s, event.ctrlKey:%s', 'background-color:purple', event.key, event.shiftKey, event.ctrlKey);
 
         if (
             (node.dataset.type == 'lines'
@@ -115,11 +103,8 @@ export function contenteditable(node: HTMLElement, type: string) {
                 && this.textContent.length >= Number(node.dataset.length ?? '0')
             )
         ) {
-            // console.log('%cevent.preventDefault()', 'background-color:brown');
             event.preventDefault();
         }
-
-        // console.log('%cnode.dispatchEvent keydown2', 'background-color:brown');
         node.dispatchEvent(
             new CustomEvent('keydown2', {
                 detail: {
@@ -135,14 +120,11 @@ export function contenteditable(node: HTMLElement, type: string) {
         this: HTMLElement,
         event: CompositionEvent | KeyboardEvent
     ) {
-        // console.log('%ccontenteditable.handleEdit', 'background-color:green', event);
-        // console.log('%ctype:%s, notKeepReturn:%s', 'background-color:purple', type, notKeepReturn);
 
         if (event instanceof KeyboardEvent
             && event.key == 'Enter'
             && !event.shiftKey
         ) {
-            // console.log('%cnode.dispatchEvent enter', 'background-color:brown');
             node.dispatchEvent(
                 new CustomEvent('enter', {
                     detail: {
@@ -158,8 +140,6 @@ export function contenteditable(node: HTMLElement, type: string) {
 
         if (html !== this.innerHTML) {
             html = this.innerHTML;
-
-            // console.log('%cnode.dispatchEvent edit', 'background-color:brown');
             node.dispatchEvent(
                 new CustomEvent('edit', {
                     detail: {
@@ -231,8 +211,6 @@ export function contenteditable(node: HTMLElement, type: string) {
     }
 
     function handlePaste(this: HTMLElement, event: ClipboardEvent) {
-        // console.log('%chandlePaste', 'background-color:green', event);
-        // console.log('%ctype:%s, notKeepReturn:%s', 'background-color:purple', type, notKeepReturn);
 
         console.clear();
         event.stopPropagation();
@@ -243,13 +221,10 @@ export function contenteditable(node: HTMLElement, type: string) {
             return;
 
         const pasted = event.clipboardData?.getData('text/plain');
-
-        // console.log('%cpasted', 'background-color:purple', pasted);
         if (!pasted) return;
 
         const replacer = notKeepReturn ? ' ' : '<br>';
         const encoded = html_entity_encode(pasted).replace(/\r?\n/g, replacer);
-        // console.log('%cencoded', 'background-color:purple', encoded);
 
         const range = selection.getRangeAt(0);
         range.deleteContents();

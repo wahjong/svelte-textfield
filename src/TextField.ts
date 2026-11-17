@@ -8,17 +8,13 @@ interface TextFieldElement extends HTMLElement {
 
 document.querySelectorAll<TextFieldElement>('textfield').forEach((ele, i) => {
 
-    // console.log('%cele.dataset', 'background-color:purple', ele.dataset);
-
     const name = ele.dataset.name || 'textfield_' + i;
-    // console.log('%cname', 'background-color:purple', name);
 
     if (ele.dataset['field']) {
         ele.field = document.querySelector(`input[type=hidden][id="${ele.dataset['field']}"]`);
     } else {
         ele.field = ele.querySelector('input[type=hidden]')
     }
-    // console.log('%cele.field', 'background-color:purple', ele.field);
 
     let content = '';
     if (ele.field) {
